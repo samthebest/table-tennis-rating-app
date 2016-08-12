@@ -1,5 +1,7 @@
 package ttra
 
+import scala.io.Source
+
 case class Player(name: String, rating: Int = 0, wins: Int = 0, losses: Int = 0)
 
 case class Game(winnerName: String, loserName: String, points: Option[List[(Int, Int)]] = None, ts: Long = System.currentTimeMillis()) {
@@ -29,6 +31,9 @@ object TTRA {
     // TODO require name is of form first.last so people can email each other
     approvedPlayerList = approvedPlayerList + name
   }
+
+  def getPlayerList: Set[String] = approvedPlayerList
+  def getGameLog: Vector[Game] = gameLog
 
   def reset(): Unit = gameLog = Vector.empty
 
@@ -93,8 +98,19 @@ object TTRA {
 
   val path = "/usr/zeppelin/host-volume/fp-db.tsv"
 
-  // Excercise for Dan
-  def load(): Unit = ??? // Source.fromFile(path).getLines().map ...
+  // TODO Recover points, should anyone ever bother to use that feature
+  def load(): Unit = {
+    gameLog =
+      Source.fromFile(path).getLines().map(_.split("\t", -1).toList match {
+        case winner :: loser :: ts :: points :: Nil => Game(winner, loser, ts = ts.toLong)
+      })
+      .toVector
+
+    approvedPlayerList = approvedPlayerList ++ gameLog.flatMap(g => List(g.winnerName, g.loserName))
+  }
+
+  // Useful when people make a mistake
+  def removeGame(game: Game): Unit = gameLog = gameLog.filter(_ != game)
 
   implicit class PimpedString(s: String) {
     def write(p: String): Unit = {
@@ -103,7 +119,10 @@ object TTRA {
     }
   }
 
+  // TODO Rotation (again, in case of mistake)
   def save(): Unit = export.write(path)
+
+  def backup(): Unit = export.write(path + "." + System.currentTimeMillis())
 
   // Ideas: prizes should be awarded for players who:
   // 1. Increase in rank the most
