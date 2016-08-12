@@ -4,8 +4,8 @@ import scala.io.Source
 
 case class Player(name: String, rating: Int = 0, wins: Int = 0, losses: Int = 0)
 
-case class Game(winnerName: String, loserName: String, points: Option[List[(Int, Int)]] = None, ts: Long = System.currentTimeMillis()) {
-  def toTsv: String = winnerName + "\t" + loserName + "\t" + ts + "\t" + points.map(_.map(_.productIterator.toList.mkString(";")).mkString(",")).getOrElse("")
+case class Game(winnerName: String, loserName: String, ts: Long = System.currentTimeMillis()) {
+  def toTsv: String = winnerName + "\t" + loserName + "\t" + ts + "\t"
 }
 
 // http://www.teamusa.org/usa-table-tennis/ratings/how-does-the-usatt-rating-system-work
@@ -19,12 +19,6 @@ object TTRA {
     require(approvedPlayerList(winnerName), "ERROR: Name spelt wrong, or not in approved list: " + winnerName)
     require(approvedPlayerList(loserName), "ERROR: Name spelt wrong, or not in approved list: " + loserName)
     gameLog = gameLog :+ Game(winnerName, loserName)
-  }
-
-  def addGame(winnerName: String, loserName: String, points: List[(Int, Int)]): Unit = {
-    require(approvedPlayerList(winnerName), "ERROR: Name spelt wrong, or not in approved list: " + winnerName)
-    require(approvedPlayerList(loserName), "ERROR: Name spelt wrong, or not in approved list: " + loserName)
-    gameLog = gameLog :+ Game(winnerName, loserName, Some(points))
   }
 
   def addPlayer(name: String): Unit = {
@@ -82,7 +76,7 @@ object TTRA {
 
   // When gameLog gets large we will probably want to put some caching logic in
   def constructState: Map[String, Player] = gameLog.foldLeft(Map.empty[String, Player]) {
-    case (m, Game(winnerName, loserName, _, _)) =>
+    case (m, Game(winnerName, loserName, _)) =>
       val winner = m.getOrElse(winnerName, Player(winnerName))
       val loser = m.getOrElse(loserName, Player(loserName))
 
@@ -98,11 +92,22 @@ object TTRA {
 
   val path = "/usr/zeppelin/host-volume/fp-db.tsv"
 
-  // TODO Recover points, should anyone ever bother to use that feature
   def load(): Unit = {
     gameLog =
       Source.fromFile(path).getLines().map(_.split("\t", -1).toList match {
-        case winner :: loser :: ts :: points :: Nil => Game(winner, loser, ts = ts.toLong)
+        case winner :: loser :: ts :: Nil => Game(winner, loser, ts = ts.toLong)
+        case _ => ???
+      })
+      .toVector
+
+    approvedPlayerList = approvedPlayerList ++ gameLog.flatMap(g => List(g.winnerName, g.loserName))
+  }
+
+  def loadFromCSVString(s: String): Unit = {
+    gameLog =
+      s.split("\n").map(_.split(",", -1).toList match {
+        case winner :: loser :: ts :: Nil => Game(winner, loser, ts = ts.toLong)
+        case other => throw new IllegalArgumentException("UTS: " + other)
       })
       .toVector
 
