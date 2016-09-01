@@ -13,4 +13,4 @@ Genius!
 - [ ] Other player analytics (like opponent diversity, ratings over time)
 - [ ] Buttons for adding players
 - [ ] Recommendations for who to play (based on not played in a while, and level)
-- [ ] (much later, v999) Queueing system with notifications (hipchat / slack integration)
+- [ ] much later, v999, Queueing system with notifications (hipchat / slack integration)
