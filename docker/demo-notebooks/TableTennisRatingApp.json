@@ -91,7 +91,7 @@
     },
     {
       "title": "Run Me After Server Restarts",
-      "text": "\ncase class DropDownMenu(id: String, label: String)\n\nimport ttra.TTRA._\n\ntry {\n    load()\n} catch {\n    case e: Throwable => loadFromCSVString(\"\")\n}\n\n",
+      "text": "\ncase class DropDownMenu(id: String, label: String)\n\nimport ttra.TTRA._\n\ntry {\n    load()\n} catch {\n    case e: Throwable => loadFromCSVString(\"foo,bar,0\")\n}\n\n",
       "dateUpdated": "2016-09-02T15:28:38+0000",
       "config": {
         "colWidth": 12,

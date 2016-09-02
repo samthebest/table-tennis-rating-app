@@ -14,6 +14,7 @@ COPY demo-notebooks/ $ZEPPELIN_HOME/docker/demo-notebooks
 COPY template-notebooks/ $ZEPPELIN_HOME/docker/template-notebooks
 COPY test-notebooks/ $ZEPPELIN_HOME/docker/test-notebooks
 
-ADD ttra-assembly.jar /usr/zeppelin/interpreter/spark/dep/
+#ADD ttra-assembly.jar /usr/zeppelin/interpreter/spark/dep/
+ADD ttra-assembly.jar /usr/zeppelin/
 
 CMD ["bin/zeppelin.sh"]

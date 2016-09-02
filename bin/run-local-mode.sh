@@ -47,7 +47,7 @@ if [ "${skip_build}" != "true" ]; then
         ./bin/data-it-tests.sh
         sbt assembly
     fi
-    cp target/scala-2.10/ttra-assembly-*.jar ./docker/ttra-assembly.jar
+    cp target/scala-2.11/ttra-assembly-*.jar ./docker/ttra-assembly.jar
 fi
 
 pwd=`pwd`
