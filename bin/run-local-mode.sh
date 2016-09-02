@@ -50,15 +50,15 @@ if [ "${skip_build}" != "true" ]; then
         ./bin/data-it-tests.sh
         sbt assembly
     fi
-    cp target/scala-2.10/spark-ttra-assembly-*.jar ./docker/ttra-assembly.jar
+    cp target/scala-2.10/ttra-assembly-*.jar ./docker/ttra-assembly.jar
 fi
 
 if [ "${skip_zep_update}" != "true" ]; then
     echo "INFO: Updating custom-zeppelin"
-    test -d docker/zeppelin || git clone ??? docker/zeppelin
+    test -d docker/zeppelin || git clone https://github.com/apache/zeppelin.git docker/zeppelin
 
     branch=master
-    commit=???
+    commit=5f1208bdbace9a56ae2744193880a2be9ce118df
 
     git --git-dir=docker/zeppelin/.git --work-tree=docker/zeppelin fetch origin
     git --git-dir=docker/zeppelin/.git --work-tree=docker/zeppelin checkout ${branch}
@@ -99,6 +99,6 @@ rm -r docker/maven_repo || true
 rm -r docker/npm_repo || true
 
 if [ "${build_only}" != "true" ]; then
-    docker run -m 2500m -v ${pwd}/host-volume:/usr/zeppelin/host-volume -p ${port}:8080 -p 8088:8088 \
-      -p 62911:62911 -p 1898:1898 -p 4040:4040 -i ttra bin/ttra.sh -g2
+    docker run -m 2500m -v ${pwd}/host-volume:/usr/zeppelin/host-volume -p ${port}:8080 \
+      -p 62911:62911 -p 1898:1898 -p 4040:4040 -i ttra bin/zeppelin.sh -g2
 fi

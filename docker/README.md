@@ -24,7 +24,7 @@ docker-machine restart default && eval "$(docker-machine env default)"
 
 ## Zeppelin
 
-After installing docker. To start (regular) zeppelin run `./start-native-zeppelin.sh`.  The URL will be:
+The URL will be:
 
 ```
 eval "$(docker-machine env default)"
