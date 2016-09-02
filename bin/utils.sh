@@ -170,12 +170,6 @@ function setup_notebooks_at_startup {
     touch SETUP_COMPLETED
 }
 
-function setup_complete {
-    docker exec -i `docker ps -a | grep ttra | head -1 | awk '{print $1}'` test -f SETUP_STARTED \
-    && docker exec -i `docker ps -a | grep ttra | head -1 | awk '{print $1}'` test -f SETUP_COMPLETED \
-    || test "${attempts}" = 200
-}
-
 function wait_for_setup_to_complete {
     echo "INFO: Waiting for setup to complete"
 

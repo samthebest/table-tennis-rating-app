@@ -1,23 +1,9 @@
 FROM dylanmei/zeppelin:latest
 
-
 RUN rm $ZEPPELIN_NOTEBOOK_DIR/2A94M5J1Z/note.json
 RUN rmdir $ZEPPELIN_NOTEBOOK_DIR/2A94M5J1Z
 
-RUN mkdir -p host-volume
-
-ADD bin/zeppelin-env.sh /usr/zeppelin/conf/zeppelin-env.sh
-
-ADD bin/ttra.sh bin/ttra.sh
-ADD bin/utils.sh bin/utils.sh
-
 ADD log4j.properties /usr/zeppelin/conf/
-
-ADD bin/file-server.py /usr/zeppelin/bin/file-server.py
-
-ADD bin/file-server.sh /usr/zeppelin/bin/file-server.sh
-
-COPY file-server-dir /usr/zeppelin/file-server-dir
 
 COPY notebooks/ $ZEPPELIN_NOTEBOOK_DIR/
 

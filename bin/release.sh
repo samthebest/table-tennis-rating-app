@@ -5,7 +5,6 @@ set -ex
 OPTIND=1
 
 function show_help {
-    echo "-c to skip cloning the zeppelin repo (useful since it doesn't change often)"
     echo "-b to skip building the jar (useful for debugging the Dockerfile)"
     echo "-B will build only and not run it-tests. This is used by build.sh in the root of the project"
     echo "-s will build and deploy a snapshot and will not tag and such and such, useful for developing"
@@ -28,8 +27,6 @@ while getopts "h?cbBsu:p:P:l:H:" opt; do
     h|\?)
         show_help
         exit 0
-        ;;
-    c)  build_args="${build_args} -c"
         ;;
     b)  build_args="${build_args} -b"
         ;;

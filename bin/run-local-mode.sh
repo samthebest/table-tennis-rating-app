@@ -6,7 +6,6 @@ set -ex
 OPTIND=1
 
 function show_help {
-    echo "-c to skip updating the zeppelin repo (useful since it doesn't change often)"
     echo "-b to skip building the jar (useful for debugging the Dockerfile)"
     echo "-B will build only and not start zeppelin. This is used by build.sh in the root of the project"
     echo "-p port"
@@ -21,8 +20,6 @@ while getopts "h?cbmBdtp:" opt; do
     h|\?)
         show_help
         exit 0
-        ;;
-    c)  skip_zep_update=true
         ;;
     b)  skip_build=true
         ;;
@@ -53,31 +50,11 @@ if [ "${skip_build}" != "true" ]; then
     cp target/scala-2.10/ttra-assembly-*.jar ./docker/ttra-assembly.jar
 fi
 
-if [ "${skip_zep_update}" != "true" ]; then
-    echo "INFO: Updating custom-zeppelin"
-    test -d docker/zeppelin || git clone https://github.com/apache/zeppelin.git docker/zeppelin
-
-    branch=master
-    commit=5f1208bdbace9a56ae2744193880a2be9ce118df
-
-    git --git-dir=docker/zeppelin/.git --work-tree=docker/zeppelin fetch origin
-    git --git-dir=docker/zeppelin/.git --work-tree=docker/zeppelin checkout ${branch}
-    git --git-dir=docker/zeppelin/.git --work-tree=docker/zeppelin checkout ${commit}
-
-    function update_without_git {
-        rm -r docker/zeppelin-without-git || true
-        cp -r docker/zeppelin docker/zeppelin-without-git
-        rm -rf docker/zeppelin-without-git/.git
-    }
-
-    diff --exclude=".git" -r docker/zeppelin docker/zeppelin-without-git 1>/dev/null || update_without_git
-fi
-
 pwd=`pwd`
 
 mkdir -p ${pwd}/host-volume
 
-source ./docker/bin/utils.sh
+source ./bin/utils.sh
 
 create_notebook_dir ${config_notebook} ${demo_notebooks} ${template_notebooks} ${test_notebooks}
 

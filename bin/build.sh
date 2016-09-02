@@ -5,7 +5,6 @@ set -ex
 OPTIND=1
 
 function show_help {
-    echo "-c to skip cloning the zeppelin repo (useful since it doesn't change often)"
     echo "-b to skip building the jar (useful for debugging the Dockerfile)"
     echo "-B will build only and not run it-tests. This is used by build.sh in the root of the project"
 }
@@ -17,8 +16,6 @@ while getopts "h?cbBp:" opt; do
     h|\?)
         show_help
         exit 0
-        ;;
-    c)  it_test_args="${it_test_args} -c"
         ;;
     b)  skip_build=true
         it_test_args="${it_test_args} -b"
@@ -44,7 +41,7 @@ if [ "${skip_build}" != "true" ]; then
     cp target/scala-2.10/spark-ttra-assembly-*.jar ./docker/ttra-assembly.jar
 fi
 
-source docker/bin/utils.sh
+source ./bin/utils.sh
 
 echo "INFO: Running notebook integrations tests and building image"
 
