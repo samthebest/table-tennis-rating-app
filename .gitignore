@@ -12,3 +12,5 @@ docker/ttra-assembly.jar
 
 docker/notebooks/*
 
+docker/full-poker-table.tsv
+

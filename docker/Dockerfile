@@ -14,7 +14,11 @@ COPY demo-notebooks/ $ZEPPELIN_HOME/docker/demo-notebooks
 COPY template-notebooks/ $ZEPPELIN_HOME/docker/template-notebooks
 COPY test-notebooks/ $ZEPPELIN_HOME/docker/test-notebooks
 
+# This has stopped working, so have to load jar using %dep
 #ADD ttra-assembly.jar /usr/zeppelin/interpreter/spark/dep/
+
 ADD ttra-assembly.jar /usr/zeppelin/
+
+ADD full-poker-table.tsv /root/full-poker-table.tsv
 
 CMD ["bin/zeppelin.sh"]

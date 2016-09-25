@@ -19,6 +19,9 @@ libraryDependencies ++= Seq(
   "org.scalaz" %% "scalaz-core" % "7.1.0" withSources() withJavadoc(),
   //
   "org.apache.commons" % "commons-math3" % "3.2" withSources() withJavadoc()
+  //"org.apache.spark" %% "spark-core" % "2.0.0" withSources() withJavadoc(),
+  //"org.apache.spark" %% "spark-sql" % "2.0.0" withSources() withJavadoc()
+
 )
 
 
