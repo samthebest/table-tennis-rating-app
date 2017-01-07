@@ -1,5 +1,8 @@
 FROM dylanmei/zeppelin:latest
 
+# At the time of writing, and when everything worked just fine, used
+# https://github.com/dylanmei/docker-zeppelin/commit/20161bfd1c487afe3e9e0504a393957c99e8a4b2
+
 RUN rm $ZEPPELIN_NOTEBOOK_DIR/2A94M5J1Z/note.json
 RUN rmdir $ZEPPELIN_NOTEBOOK_DIR/2A94M5J1Z
 
@@ -15,7 +18,8 @@ COPY template-notebooks/ $ZEPPELIN_HOME/docker/template-notebooks
 COPY test-notebooks/ $ZEPPELIN_HOME/docker/test-notebooks
 
 # This has stopped working, so have to load jar using %dep
-#ADD ttra-assembly.jar /usr/zeppelin/interpreter/spark/dep/
+# I tried REALLY hard to use the following via the API, but the API sucks
+# https://zeppelin.apache.org/docs/0.6.0/manual/dependencymanagement.html
 
 ADD ttra-assembly.jar /usr/zeppelin/
 
