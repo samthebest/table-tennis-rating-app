@@ -2,7 +2,7 @@
 
 set -ex
 
-project_name="ml-view"
+project_name="ttra"
 
 config_notebook=docker/template-notebooks/Configuration.json
 demo_notebooks=`ls docker/demo-notebooks/ | awk '{print "docker/demo-notebooks/" $1}'`
