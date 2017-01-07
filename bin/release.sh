@@ -13,6 +13,7 @@ function show_help {
     echo "-P port used by container upon release"
     echo "-l label used to label container (either prod or test, default: prod)"
     echo "-H to set the Host (default: ???)"
+    echo "-r will only restart zeppelin but not deploy. Currently must be used in conjunction with -s"
 }
 
 build_args=""
@@ -22,9 +23,10 @@ release_port=80
 label=prod
 host=???
 
-while getopts "h?cbBsu:p:P:l:H:" opt; do
+while getopts "h?cbBsu:p:P:l:H:r" opt; do
     case "$opt" in
     h|\?)
+        set +x
         show_help
         exit 0
         ;;
@@ -44,6 +46,8 @@ while getopts "h?cbBsu:p:P:l:H:" opt; do
         ;;
     H)  host=$OPTARG
         ;;
+    r)  restart_only=true
+        ;;
     esac
 done
 
@@ -57,11 +61,24 @@ if [ "${build_snapshot}" != "true" ]; then
     git branch | grep "*" | grep master
 fi
 
+next_version=SNAPSHOT
+
+if [ "${restart_only}" = "true" ]; then
+    echo "INFO: Only restarting"
+
+    if [ "${build_snapshot}" != "true" ]; then
+        echo "ERROR: Restart only supported for snapshot, please use -s"
+        exit 1
+    fi
+
+    ssh -t -i ~/.ssh/shepherd -o StrictHostKeyChecking=no ${user}@${host} "/home/${user}/run-server-mode.sh -v ${next_version} -u ${user} -l ${label} -p ${release_port}"
+
+    exit 0
+fi
+
 ./bin/build.sh ${build_args}
 
 echo "INFO: Build success"
-
-next_version=SNAPSHOT
 
 if [ "${build_snapshot}" != "true" ]; then
     last_version=`git tag | egrep "^[0-9]+$" | sort -n | tail -1`
@@ -83,11 +100,13 @@ if [ "${build_snapshot}" != "true" ]; then
     git show-ref --tags -d
 fi
 
-docker_image=ttra.tar
+source ./bin/utils.sh
 
-artefact_name=ttra-${next_version}.tar
+docker_image=${project_name}.tar
 
-# TODO Save artefact
+artefact_name=${project_name}-${next_version}.tar
+
+# TODO Save artefact in a docker repo
 
 function deploy {
     echo "INFO: Deploying to $host"
@@ -95,11 +114,11 @@ function deploy {
     tmp_artefact_store=/home/${user}/tmp-artefact-store
 
     echo "INFO: scp-ing"
-    scp ${docker_image} ${user}@${host}:${tmp_artefact_store}/${artefact_name}
+    scp -o StrictHostKeyChecking=no ${docker_image} ${user}@${host}:${tmp_artefact_store}/${artefact_name}
 
-    scp bin/run-server-mode.sh ${user}@${host}:/home/${user}/
+    scp -o StrictHostKeyChecking=no bin/run-server-mode.sh ${user}@${host}:/home/${user}/
 
-    ssh ${user}@${host} "/home/${user}/run-in-uat.sh -v ${next_version} -u ${user} -l ${label} -p ${release_port}"
+    ssh -o StrictHostKeyChecking=no ${user}@${host} "/home/${user}/run-server-mode.sh -v ${next_version} -u ${user} -l ${label} -p ${release_port}"
 }
 
 deploy
