@@ -1,5 +1,7 @@
 package ttra
 
+import java.io.File
+
 import scala.io.Source
 
 case class Player(name: String, rating: Int = 0, wins: Int = 0, losses: Int = 0)
@@ -95,16 +97,18 @@ object TTRA {
 
   val path = "/usr/zeppelin/host-volume/fp-db.tsv"
 
-  def load(): Unit = {
-    gameLog =
-      Source.fromFile(path).getLines().map(_.split("\t", -1).toList match {
-        case winner :: loser :: ts :: Nil => Game(winner, loser, ts = ts.toLong)
-        case _ => ???
-      })
-      .toVector
+  def load(): Unit =
+    if (!new File(path).exists()) println("WARN: File not exist, not loading anything: " + path)
+    else {
+      gameLog =
+        Source.fromFile(path).getLines().map(_.split("\t", -1).toList match {
+          case winner :: loser :: ts :: Nil => Game(winner, loser, ts = ts.toLong)
+          case _ => ???
+        })
+        .toVector
 
-    approvedPlayerList = approvedPlayerList ++ gameLog.flatMap(g => List(g.winnerName, g.loserName))
-  }
+      approvedPlayerList = approvedPlayerList ++ gameLog.flatMap(g => List(g.winnerName, g.loserName))
+    }
 
   def loadFromCSVString(s: String): Unit = {
     gameLog =
@@ -137,52 +141,3 @@ object TTRA {
   // 2. Play the most number of different players
   // 3. Play the most number of new players
 }
-
-
-//case class DropDownMenu(id: String, label: String)
-//
-//import TTRA._
-//
-//try {
-//  load()
-//} catch {
-//  case e: Throwable => println("Load failed, try importing history")
-//}
-
-
-//val playersMenuOptions = getPlayerList.toArray.map(name => DropDownMenu(name, name))
-//z.angularBind("myOptions", playersMenuOptions)
-//z.angularBind("selectedOptionWinner", Array(DropDownMenu("NOT SELECTED", "NOT SELECTED")))
-//z.angularBind("selectedOptionLoser", Array(DropDownMenu("NOT SELECTED", "NOT SELECTED")))
-
-
-
-//%angular
-//<label>THE MIGHTY WINNER:</label><select name="mySelectWinner" style="background-color:transparent" ng-options="opt.id as opt.label for opt in myOptions" ng-model="selectedOptionWinner"></select>
-//<label>THE PATHETIC WORTHLESS LOSER:</label><select name="mySelectLoser" style="background-color:transparent" ng-options="opt.id as opt.label for opt in myOptions" ng-model="selectedOptionLoser"></select>
-
-
-
-
-//reset()
-//load()
-//val winner = z.angular("selectedOptionWinner").toString
-//val loser = z.angular("selectedOptionLoser").toString
-//if (winner == null || loser == null || winner == "" || loser == "" || winner == "NOT SELECTED" || loser == "NOT SELECTED" || winner.contains("DropDownMenu") || loser.contains("DropDownMenu")) {
-//  println(".")
-//  println("ERROR: User too stupid, or try refreshing/clearing cache")
-//} else {
-//  addGame(winner, loser)
-//  save()
-//  println("SUCCESS! Well done you added a game, run the Rankings cell to see how crap you are!")
-//  println("Most recent 10 games:")
-//  getGameLogPretty.takeRight(10).foreach(println)
-//}
-
-
-
-
-//z.show(sqlContext.createDataFrame(sortedState))
-
-
-//z.show(sqlContext.createDataFrame(getGameLog.toList))
