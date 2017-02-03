@@ -1,16 +1,14 @@
 package ttra
 
 import java.io.{File, FileNotFoundException}
-
 import org.specs2.mutable.Specification
 import ttra.BashUtils._
 import ttra.ZeppelinAdminUtils._
-
 import scala.concurrent.Future
 
 // Here we will put tests that actually run the notebooks - ultra E2E tests!
-class NotebookE2ETests extends Specification {
-  "ttra Zeppelin" should {
+object NotebookE2ETests extends Specification {
+  "Zeppelin" should {
     val zeppelinStartFuture = Future(startZeppelin())
 
     assert(awaitStart(zeppelinStartFuture))
@@ -42,11 +40,15 @@ class NotebookE2ETests extends Specification {
 
     allIds.foreach(bindInterpreter(interpreters, _))
 
-    // TODO Rather than use a config notebook to load the jar, work out how to use the API successfully
-    // see http://stackoverflow.com/questions/40940830/programmatically-add-jar-to-zeppelin-spark-interpreter-via-api/40944324#40944324
-//    assert(runNotebook("2BX7FRD5T").isEmpty)
-
     "Can run all notebooks" should {
+      sequential
+
+      // TODO Rather than use a config notebook to load the jar, work out how to use the API successfully
+      // see http://stackoverflow.com/questions/40940830/programmatically-add-jar-to-zeppelin-spark-interpreter-via-api/40944324#40944324
+      "Can run config notebook" in {
+        runNotebook("2BX7FRD5T") must_=== None
+      }
+
       zipped.foreach((testNotebook _).tupled)
     }
 

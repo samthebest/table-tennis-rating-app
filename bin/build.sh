@@ -34,14 +34,14 @@ shift $((OPTIND-1))
 echo "INFO: Bootstrapping"
 ./bin/bootstrap.sh
 
+source ./bin/utils.sh
+
 if [ "${skip_build}" != "true" ]; then
     echo "INFO: Running unit tests and building jar"
     ./bin/data-it-tests.sh
     sbt assembly
-    cp target/scala-2.10/spark-ttra-assembly-*.jar ./docker/ttra-assembly.jar
+    cp target/scala-2.10/spark-${project_name}-assembly-*.jar ./docker/${project_name}-assembly.jar
 fi
-
-source ./bin/utils.sh
 
 echo "INFO: Running notebook integrations tests and building image"
 
@@ -49,7 +49,7 @@ if [ "${build_only}" = "true" ]; then
     ./bin/custom-zeppelin.sh ${it_test_args}
     exit 0
 else
-    ./bin/notebooks-it-tests.sh "-b ${it_test_args}"
+    ./bin/notebooks-e2e-tests.sh "-b ${it_test_args}"
 fi
 
 create_notebook_dir ${config_notebook} ${demo_notebooks} ${template_notebooks}
@@ -57,10 +57,10 @@ create_notebook_dir ${config_notebook} ${demo_notebooks} ${template_notebooks}
 echo "INFO: Rebuilding notebooks into image, so that we don't include test notebooks"
 mkdir docker/maven_repo
 mkdir docker/npm_repo
-docker build -t ttra docker
+docker build -t ${project_name} docker
 
-image_id=`docker images | grep "ttra" | awk '{print $3}'`
+image_id=`docker images | grep "${project_name}" | awk '{print $3}'`
 
-docker tag ${image_id} ttra
+docker tag ${image_id} ${project_name}
 
-docker save -o ttra.tar ${image_id}
+docker save -o ${project_name}.tar ${image_id}

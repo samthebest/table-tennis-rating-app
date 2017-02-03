@@ -1,6 +1,7 @@
 
 .idea*
 project/target*
+project/project*
 target*
 
 .DS_Store
@@ -8,7 +9,7 @@ target*
 */*/.DS_Store
 */*/*/.DS_Store
 
-docker/ttra-assembly.jar
+docker/*-assembly.jar
 
 docker/notebooks/*
 

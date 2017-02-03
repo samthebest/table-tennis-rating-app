@@ -16,9 +16,11 @@ function show_help {
     echo "-r will only restart zeppelin but not deploy. Currently must be used in conjunction with -s"
 }
 
+source ./bin/utils.sh
+
 build_args=""
 
-user=ttra-user
+user=${project_name}-user
 release_port=80
 label=prod
 host=???
@@ -99,8 +101,6 @@ if [ "${build_snapshot}" != "true" ]; then
 
     git show-ref --tags -d
 fi
-
-source ./bin/utils.sh
 
 docker_image=${project_name}.tar
 

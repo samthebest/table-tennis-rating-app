@@ -14,14 +14,14 @@ function show_help {
     echo "-o to override the path where the artefacts are (we needed this for a workaround once)"
 }
 
+project_name=ttra
+
 port=80
 version_number="not set"
 restart_only=false
 memory=24
-user=ttra-user
+user=${project_name}-user
 label=prod
-
-project_name=ttra
 
 while getopts "h?v:rp:g:u:l:" opt; do
     case "$opt" in

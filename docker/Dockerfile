@@ -23,6 +23,4 @@ COPY test-notebooks/ $ZEPPELIN_HOME/docker/test-notebooks
 
 ADD ttra-assembly.jar /usr/zeppelin/
 
-ADD full-poker-table.tsv /root/full-poker-table.tsv
-
 CMD ["bin/zeppelin.sh"]
