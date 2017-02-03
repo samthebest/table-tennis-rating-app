@@ -7,6 +7,7 @@ This project also serves as a nice template for integrating sbt projects (e.g. I
  - provides a neat mechanism for writing code in Intellij and calling it from Zeppelin.
  - provides scripts to build and package & release the jar, notebooks and docker image.
  - provides an uber-test-harness that allows you to include the running of notebooks (and their success) in your tests.
+ - provides the start of a crufty Scala wrapper for the Zeppelin Rest API
 
 ## TODO
 
