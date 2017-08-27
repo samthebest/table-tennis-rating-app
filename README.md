@@ -80,3 +80,14 @@ To build the jar run `sbt assembly`. To build the big Docker tar ball use `./bin
 
 Just run `ssh.sh`
 
+## To Rename Project
+
+Change `ttra` in every file found by
+
+```
+grep -R ttra * | grep -i project | grep -v Binary | grep -v target
+```
+
+TODO write a script to auto-replace
+
+
