@@ -56,7 +56,7 @@ echo $DOCKER_HOST | cut -c 7- | tr ':' ' ' | awk '{print $1 ":8080"}'
 
 ## Disk space issues with docker
 
-Try `docker-machine rm default` then rerun the docker-machine create command above. This will be very slow!
+Try `docker-machine rm default` then rerun the `docker-machine create --driver virtualbox default` command. This will be very slow!
 
 ## To Run Locally
 
