@@ -2,6 +2,7 @@
 .idea*
 project/target*
 project/project*
+project/build.properties
 target*
 
 .DS_Store
