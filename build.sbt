@@ -21,10 +21,9 @@ libraryDependencies ++= Seq(
   "com.m3" % "curly" % "0.5.5" withSources() withJavadoc(),
   "io.spray" %% "spray-json" % "1.3.1" withSources() withJavadoc(),
   //
-  "org.apache.commons" % "commons-math3" % "3.2" withSources() withJavadoc()
-  //"org.apache.spark" %% "spark-core" % "2.0.1" withSources() withJavadoc(),
-  //"org.apache.spark" %% "spark-sql" % "2.0.1" withSources() withJavadoc()
-
+  "org.apache.commons" % "commons-math3" % "3.2" withSources() withJavadoc(),
+  "org.apache.spark" %% "spark-core" % "2.0.1" withSources() withJavadoc(),
+  "org.apache.spark" %% "spark-sql" % "2.0.1" withSources() withJavadoc()
 )
 
 dependencyOverrides ++= Set(
@@ -32,6 +31,30 @@ dependencyOverrides ++= Set(
   "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.5"
 )
 
+// Merge strat just uses first instead of error
+mergeStrategy in assembly <<= (mergeStrategy in assembly)((old) => {
+  case x if Assembly.isConfigFile(x) =>
+    MergeStrategy.concat
+  case PathList(ps@_*) if Assembly.isReadme(ps.last) || Assembly.isLicenseFile(ps.last) =>
+    MergeStrategy.rename
+  case PathList("META-INF", xs@_*) =>
+    (xs map {
+      _.toLowerCase
+    }) match {
+      case ("manifest.mf" :: Nil) | ("index.list" :: Nil) | ("dependencies" :: Nil) =>
+        MergeStrategy.discard
+      case ps@(x :: xs) if ps.last.endsWith(".sf") || ps.last.endsWith(".dsa") =>
+        MergeStrategy.discard
+      case "plexus" :: xs =>
+        MergeStrategy.discard
+      case "services" :: xs =>
+        MergeStrategy.filterDistinctLines
+      case ("spring.schemas" :: Nil) | ("spring.handlers" :: Nil) =>
+        MergeStrategy.filterDistinctLines
+      case _ => MergeStrategy.first // Changed deduplicate to first
+    }
+  case PathList(_*) => MergeStrategy.first // added this line
+})
 
 javaOptions ++= Seq("-target", "1.8", "-source", "1.8")
 

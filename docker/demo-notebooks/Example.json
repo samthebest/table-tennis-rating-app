@@ -1,0 +1,268 @@
+﻿{
+  "paragraphs": [
+    {
+      "title": "Easily Load Internal and External Libraries ",
+      "text": "%dep\n\nz.load(\"/usr/zeppelin/ttra-assembly.jar\")\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-06T15:05:26+0000",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Must be used before SparkInterpreter (%spark) initialized\nHint: put this paragraph before any Spark code and restart Zeppelin/Interpreter"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710309712_-300065342",
+      "id": "20170906-140651_1721180176",
+      "dateCreated": "2017-09-06T15:05:09+0000",
+      "dateStarted": "2017-09-07T09:32:51+0000",
+      "dateFinished": "2017-09-07T09:32:52+0000",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500,
+      "focus": true,
+      "$$hashKey": "object:4077"
+    },
+    {
+      "title": "Execute Scala Code",
+      "text": "%spark\n\nimport ttra.DataGenerator._\n\napply(sc, sqlc)\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-06T15:05:42+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\nimport ttra.DataGenerator._\nGenerated 8274 random people\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710309719_-301219588",
+      "id": "20170906-140545_1392188166",
+      "dateCreated": "2017-09-06T15:05:09+0000",
+      "dateStarted": "2017-09-07T09:32:52+0000",
+      "dateFinished": "2017-09-07T09:32:55+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:4078"
+    },
+    {
+      "title": "Execute SQL Statements (over Spark, Hive, Postgres, HBase, ... and anything with JBDC support)",
+      "text": "%sql\n\nselect * from people limit 150\n",
+      "dateUpdated": "2017-09-07T11:54:20+0000",
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "editorHide": false,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tname\tlocation\n28\tbngnt\tManchester\n28\tikkxx\tLondon\n27\trdwrr\tReading\n47\tdgkjb\tManchester\n56\tccmro\tBath\n24\tdrhlf\tBath\n28\ticqay\tLondon\n41\tluatb\tLeeds\n46\tudiyv\tManchester\n56\tauhxo\tLeeds\n34\tparet\tManchester\n37\tdertr\tManchester\n37\tfjmoq\tYork\n58\tdhlrx\tManchester\n43\tambbd\tManchester\n44\tvjwqx\tLondon\n32\tbiwnd\tManchester\n19\thrnoj\tNorwich\n18\tslbik\tYork\n71\tdpcib\tLeeds\n37\tqrixo\tLondon\n23\tldxpj\tManchester\n34\tcfolb\tBath\n35\tqaips\tManchester\n51\taaevv\tLondon\n24\tpfxjj\tReading\n52\tqnode\tLondon\n22\tgqrhb\tLondon\n18\trklde\tReading\n52\txasae\tReading\n40\tiuwdm\tManchester\n59\twyids\tLondon\n38\twaoav\tManchester\n53\trhkiv\tManchester\n49\tfnxev\tNorwich\n42\twslvk\tLondon\n49\taalxq\tManchester\n32\tlfmng\tReading\n59\trmnft\tLondon\n57\taujob\tLeeds\n75\tsomlh\tLondon\n34\twvcuq\tLeeds\n60\tklatf\tReading\n56\tqdbkd\tLondon\n66\ttvebp\tBath\n26\tvlgvr\tNorwich\n51\tcqcwi\tReading\n27\tpscki\tLondon\n68\tntusi\tLondon\n25\tdjrsc\tManchester\n41\twkklm\tLeeds\n29\tqeusu\tManchester\n29\tvdwhv\tNorwich\n51\twoeve\tBath\n29\trdsmo\tReading\n40\tqycpa\tYork\n28\txlror\tLeeds\n20\tlyrqo\tReading\n66\tlvsny\tBath\n72\tprwsx\tYork\n28\twbrhc\tManchester\n28\thbqbo\tNorwich\n37\toygwo\tLondon\n44\tixswn\tLondon\n51\tyeent\tReading\n51\tgiiok\tYork\n28\tinwrr\tManchester\n53\tbgydx\tLondon\n66\tpltok\tManchester\n35\tcocnd\tLondon\n30\twxqyi\tReading\n49\twxrxn\tLondon\n55\tiuait\tLondon\n40\tvgumr\tManchester\n62\tbsbfb\tLondon\n63\ttjcxb\tManchester\n38\tmycfy\tLondon\n24\txmgpf\tYork\n50\tffmig\tLondon\n51\tmdhkl\tLondon\n36\tarbbh\tLondon\n21\tmllxj\tNorwich\n34\txovti\tLondon\n50\tjqhav\tLondon\n48\theiqs\tLondon\n29\tolcyd\tLondon\n44\thvkxh\tManchester\n29\twjabt\tLondon\n36\tqwfdj\tManchester\n42\tpurin\tReading\n67\txveth\tLondon\n61\tvinxj\tYork\n37\thshgp\tLondon\n33\tvyflf\tLondon\n41\tpsbgf\tNorwich\n53\tjxtqc\tManchester\n19\ttbogs\tYork\n58\tgprpu\tManchester\n46\titmpl\tManchester\n37\tixgij\tManchester\n43\twjofn\tBath\n41\tquqpb\tReading\n31\tpdxmy\tNorwich\n35\tiqlhd\tReading\n31\tpuynb\tLondon\n53\tqwdmi\tManchester\n21\tuqmvq\tLondon\n45\tsbcua\tLondon\n29\tvbrcw\tManchester\n32\tcbvyk\tBath\n49\tkdigb\tReading\n64\trowwa\tYork\n34\tykhoo\tReading\n57\tfwkwj\tNorwich\n52\tycagp\tYork\n44\taxvxj\tLondon\n46\twpbgu\tManchester\n27\trswyu\tBath\n65\tgihdq\tLeeds\n39\txarao\tLondon\n32\tbwlle\tManchester\n48\tflqbi\tReading\n56\tptrkt\tLondon\n72\tnjojp\tLondon\n74\tfykxg\tLondon\n40\tgbnsr\tYork\n48\tcjmxy\tLondon\n26\thblqx\tLondon\n66\txyhbu\tLondon\n28\tnsdht\tManchester\n65\tukslf\tYork\n60\tinndq\tYork\n33\tybkoi\tReading\n23\tcknco\tReading\n51\ttkatu\tReading\n39\tfolhb\tBath\n54\tdenww\tNorwich\n27\ttsodk\tLondon\n18\tabnhx\tManchester\n64\toudrc\tLondon\n35\tfdtgb\tManchester\n73\telfff\tManchester\n37\thjcea\tManchester\n32\tvwpba\tReading\n23\trbeox\tManchester\n51\tgklkb\tLondon\n66\tijotu\tManchester\n35\tibavv\tManchester\n35\tvtrit\tLeeds\n19\tosavq\tReading\n21\tmbaor\tLondon\n35\txfdok\tManchester\n32\tdwcfo\tLondon\n38\tmpcjd\tLondon\n71\tkudml\tManchester\n68\tlgmdi\tLeeds\n34\tymrpw\tManchester\n29\twvpbp\tLondon\n37\tlnjug\tLondon\n75\tvphox\tNorwich\n49\tdfslh\tLeeds\n69\tugkxm\tNorwich\n47\tvwbnr\tLondon\n39\tglxqu\tLondon\n55\tjwfdy\tManchester\n47\tmiufu\tLeeds\n52\tpcdix\tLondon\n40\tkdnsm\tLondon\n42\tlgwjm\tLondon\n20\tpgmwj\tNorwich\n27\tjkiew\tManchester\n21\tepsle\tLondon\n40\toutit\tLondon\n29\tosdfq\tNorwich\n39\tahpkq\tBath\n72\truxhv\tLondon\n27\ttefap\tManchester\n35\tatlna\tLondon\n52\twnqhf\tLondon\n54\tdjamd\tManchester\n46\twccme\tLondon\n52\thbhpd\tLondon\n32\twpbes\tLeeds\n68\tbgsrc\tManchester\n63\thoacw\tLondon\n47\twjyqt\tNorwich\n62\topjbj\tNorwich\n63\tijqex\tBath\n59\tetyax\tManchester\n53\tbbwqs\tManchester\n73\tigvpe\tYork\n57\tapvlq\tLondon\n41\twxoyh\tLondon\n43\tfvcyl\tBath\n24\ttuxdg\tLondon\n21\ttsvpo\tManchester\n43\trevfs\tBath\n40\tdhsfa\tLeeds\n57\tcrxkc\tReading\n30\todmty\tLeeds\n33\tkgfix\tLondon\n37\tpmdcr\tLondon\n19\tvcgji\tReading\n54\tqasec\tReading\n22\tbqdop\tYork\n18\tvbdpp\tReading\n25\tliygl\tManchester\n37\tpwoqp\tManchester\n45\tibsgp\tManchester\n37\tkojja\tManchester\n68\tplxgv\tReading\n48\tjkymi\tLondon\n27\tuasav\tManchester\n38\tawyan\tLeeds\n53\tnqivg\tLondon\n63\tqjahc\tLondon\n62\tamwfa\tManchester\n26\tadeio\tLondon\n20\tyabct\tReading\n42\tjshyp\tYork\n18\tnjlqp\tReading\n29\tlssub\tBath\n36\tsupbb\tLeeds\n54\tuilte\tLondon\n52\tkmrtf\tReading\n53\tdgngg\tNorwich\n18\tgppvc\tBath\n43\tgtcwo\tLondon\n61\teqjuf\tLeeds\n38\tvyykl\tLondon\n36\tabrvw\tYork\n45\txxxmx\tLondon\n71\tggrqa\tBath\n39\tqplvg\tBath\n38\tvquhw\tLondon\n53\txvrex\tYork\n53\tfcpsl\tLondon\n46\topoot\tManchester\n56\tehptu\tYork\n68\txybvp\tNorwich\n32\tmlgub\tLeeds\n37\tjkdhs\tLondon\n25\txhoqm\tReading\n37\ttlhyr\tLeeds\n45\tlsbva\tNorwich\n38\tgslot\tLondon\n45\tfykmw\tLondon\n33\tiwvpk\tLondon\n29\thlxlv\tManchester\n37\tnctey\tLondon\n47\ttjqpc\tReading\n27\tmbryg\tYork\n58\tkdefd\tReading\n54\trjdyj\tManchester\n21\tkvgcv\tYork\n39\tkjdtj\tBath\n30\tpqkxo\tManchester\n38\tfyarj\tManchester\n34\telhhu\tManchester\n56\tdmrbc\tNorwich\n38\titdvy\tNorwich\n42\tlqfvt\tLeeds\n30\trpiic\tYork\n27\trntxp\tManchester\n34\tkufjv\tReading\n39\txshwc\tLeeds\n61\tblhba\tLondon\n65\trksaa\tLondon\n45\ttjpos\tYork\n41\tjlcyj\tYork\n49\tjiwso\tLondon\n58\temxdn\tLondon\n58\tcfvoh\tLondon\n42\tnixnf\tLondon\n48\tulble\tReading\n39\tifjtx\tManchester\n67\tfilhp\tManchester\n51\tkkphm\tNorwich\n33\tobdok\tYork\n41\tpfhoa\tBath\n46\tfywla\tManchester\n53\tuuxgm\tManchester\n38\trtaqr\tManchester\n73\tsdwnr\tLeeds\n46\tkmuto\tLondon\n37\tncdnn\tLondon\n19\twfrti\tLeeds\n33\tbmwss\tNorwich\n33\tpcsjn\tLondon\n30\twphaf\tYork\n51\thhifw\tManchester\n40\twxyvx\tNorwich\n32\tgfiog\tNorwich\n40\tjmkix\tManchester\n21\tgnxdg\tReading\n58\tgduku\tLeeds\n44\txxsae\tManchester\n26\tupbdq\tLeeds\n22\tksyba\tManchester\n30\txlayi\tLondon\n21\tanhun\tManchester\n26\tlsuha\tLeeds\n36\tyhnbs\tLondon\n32\tyfyot\tLeeds\n57\tpqmiq\tLondon\n22\tehghe\tReading\n45\tqegqp\tLeeds\n28\toljxx\tLondon\n40\tmvidm\tLondon\n69\tufchq\tNorwich\n37\tfqusv\tYork\n28\tkowif\tLondon\n26\tulrld\tNorwich\n19\tksoub\tLeeds\n64\tcwcds\tNorwich\n47\taqywe\tReading\n41\tfntbk\tReading\n54\tsohxc\tYork\n54\ttkyid\tManchester\n57\trtfjd\tLondon\n33\tmyskq\tNorwich\n41\tghfdm\tManchester\n72\tsdybo\tLondon\n41\tgvaag\tNorwich\n55\tvyhdy\tManchester\n71\trhhhy\tManchester\n44\tkuudw\tReading\n30\tuntgh\tLondon\n67\tngbcc\tLondon\n42\tfwtux\tYork\n63\trcjtd\tLondon\n26\txykkx\tLondon\n58\tdwnut\tManchester\n62\teccip\tLondon\n30\tcfcgs\tManchester\n24\taurop\tBath\n59\tmmbmu\tLondon\n51\tkckgt\tYork\n47\tlejlf\tLondon\n38\tfwdvk\tManchester\n50\tpddyw\tLondon\n68\tlbtgm\tYork\n44\toyers\tLeeds\n62\tymkbc\tLondon\n62\trvodt\tLeeds\n27\ttndqv\tManchester\n54\tumipq\tNorwich\n23\tnwvgr\tManchester\n31\tlmboq\tBath\n61\tgdirr\tReading\n74\twsrmm\tManchester\n68\tiuhvb\tNorwich\n50\tibwmb\tManchester\n58\tnalah\tNorwich\n35\txerpn\tLeeds\n33\tbkkps\tNorwich\n38\tgjerv\tReading\n45\tlhuvi\tReading\n55\tpvcga\tLondon\n22\tbprvf\tLondon\n48\tdjetw\tManchester\n35\txvaep\tLondon\n47\tstsli\tLondon\n25\tbxfpp\tManchester\n21\tkuxxr\tLondon\n26\txnyje\tLondon\n30\truweh\tLeeds\n42\tbnleb\tLondon\n66\tfntig\tLeeds\n24\tajims\tManchester\n51\tpggkv\tNorwich\n48\tntacw\tLeeds\n44\tnqqoy\tLeeds\n32\tkjqub\tManchester\n45\tjiklt\tLeeds\n52\tgfhaq\tManchester\n38\tnsgll\tLondon\n45\trdgja\tLondon\n65\tkfdim\tBath\n44\tgtjvo\tNorwich\n49\tcyrpo\tLondon\n66\tnctap\tLondon\n51\tehhyu\tManchester\n24\thvhgt\tManchester\n45\teuhpn\tLeeds\n34\tagbmf\tLondon\n34\tgpbqv\tNorwich\n44\tjwldu\tReading\n55\timabb\tLeeds\n45\tnsaay\tManchester\n18\tdxrob\tLondon\n73\txggwi\tLondon\n32\toyicb\tYork\n60\tpsdgy\tNorwich\n36\tqqbuy\tLeeds\n36\tugshj\tBath\n29\tchkle\tBath\n55\tmooxq\tManchester\n42\ttgaxu\tLondon\n34\tytnji\tLondon\n67\tlfmev\tNorwich\n52\tqlhbb\tLondon\n33\tlwabh\tLeeds\n62\tcnphs\tLondon\n35\tlmaxj\tManchester\n28\tpaciv\tBath\n51\trrfmk\tNorwich\n45\tyvdxp\tLondon\n19\tumgxc\tLondon\n62\totxii\tLondon\n42\toivvg\tLondon\n47\tovmtf\tNorwich\n55\tspqnm\tManchester\n35\twvekx\tReading\n58\tmpnwu\tManchester\n23\ttnjvq\tLondon\n26\tbmkyw\tReading\n24\tkouhh\tYork\n53\tovhhg\tLeeds\n51\timeur\tManchester\n18\tinfjv\tYork\n26\trdvwt\tLondon\n42\tkrgeo\tLondon\n42\tfbjyw\tManchester\n37\twsiir\tLondon\n29\tsoxpp\tManchester\n35\teywis\tYork\n19\tcoqxr\tManchester\n69\tyupon\tYork\n52\tddlkw\tYork\n62\tgwswq\tReading\n24\tfgjwa\tLondon\n53\tqacow\tManchester\n68\tlnxfk\tManchester\n66\tphqlo\tReading\n42\tgfxmv\tLondon\n52\thhyxn\tReading\n19\typygv\tManchester\n53\tpdpiy\tNorwich\n39\tkqtrl\tNorwich\n46\twfhue\tManchester\n43\tkgnuw\tLeeds\n29\tbmogf\tLondon\n30\tpuoqw\tReading\n59\tgauly\tLondon\n38\tcpyoq\tLeeds\n41\tcuvjf\tYork\n41\tppdln\tManchester\n45\tfucmk\tManchester\n30\tpafua\tYork\n51\tisvqj\tLondon\n48\tatola\tNorwich\n34\tnltkj\tManchester\n44\tpbfbh\tLondon\n25\tdqdvu\tLeeds\n24\tuvlro\tReading\n26\tibdve\tNorwich\n52\tjilpx\tNorwich\n19\tkorci\tManchester\n43\thdqfc\tManchester\n46\trkyqf\tManchester\n28\tdseey\tLondon\n52\tmddrs\tLondon\n22\tjgayr\tManchester\n36\thtogx\tReading\n27\tolffx\tYork\n47\tarxma\tManchester\n51\tmegnn\tManchester\n19\tlxedj\tLondon\n20\tuqkqp\tLondon\n64\tmisdg\tLondon\n47\txhoey\tLondon\n29\twgpth\tManchester\n37\txirco\tYork\n46\tjocqu\tManchester\n58\tpkacl\tLondon\n35\tvsdqv\tBath\n48\tscehp\tLondon\n58\tryhrg\tLondon\n60\tugsfa\tLondon\n73\twrbvb\tLondon\n34\ttnvwl\tLondon\n21\tmswjb\tLondon\n46\tqbpxt\tReading\n25\tmqxbl\tNorwich\n54\txjkdr\tBath\n30\tlipax\tManchester\n45\tthndu\tYork\n41\tprxkd\tReading\n22\tpdjvf\tLondon\n53\tuungp\tYork\n48\taijpt\tLondon\n63\tjxbuc\tBath\n22\tdoqmo\tLeeds\n57\tyhfsu\tNorwich\n24\tjudlq\tYork\n21\tuqtwt\tManchester\n64\tcdmar\tLondon\n19\tcihqn\tManchester\n70\tfgpnl\tManchester\n48\tqsplw\tLondon\n62\tptbxn\tManchester\n53\tbqltp\tLondon\n34\trfjyl\tBath\n25\tpqjqb\tNorwich\n44\tukkpx\tLondon\n42\tjiepe\tLeeds\n19\tpeiyg\tManchester\n56\tnbidg\tNorwich\n53\thdiqp\tYork\n38\thpxkb\tManchester\n29\thaxfy\tYork\n46\tlmqng\tYork\n54\tvskak\tLondon\n64\typqnj\tLondon\n44\tyvrsv\tLondon\n55\tdsnpg\tLondon\n32\tjnolf\tLondon\n53\txefrl\tLondon\n33\tkmwlv\tNorwich\n57\tkojdg\tLondon\n45\tpvlgh\tLondon\n74\tyqvse\tManchester\n39\tvijjt\tBath\n40\tmppsj\tBath\n36\tfeymb\tLondon\n33\ttnbvg\tYork\n29\tvuowi\tLondon\n28\tlmnfq\tManchester\n27\tvfnoo\tLondon\n70\tqbuvc\tReading\n49\ttouee\tManchester\n43\txhsnm\tBath\n34\tubtvs\tManchester\n52\trgxaj\tNorwich\n44\tkkuue\tYork\n37\tnyqys\tManchester\n51\tqlxjy\tNorwich\n40\tmekks\tLondon\n40\trvegr\tManchester\n32\tdmcmo\tManchester\n44\tqkypr\tManchester\n62\teoxjs\tLondon\n54\techir\tBath\n61\tmkbob\tLondon\n41\tiajvq\tManchester\n58\ttqndt\tReading\n20\tfgdbe\tNorwich\n19\tjbdvk\tLondon\n47\tffdcn\tManchester\n40\tfykuj\tLondon\n34\tfcjob\tNorwich\n32\txxtxy\tNorwich\n39\tbdbux\tReading\n47\tmsfbp\tLondon\n73\tvbsbn\tManchester\n41\tjmlty\tBath\n32\tyapwo\tReading\n50\tdxbfh\tNorwich\n62\thexdg\tLondon\n46\tfjdnf\tLondon\n65\twrghv\tNorwich\n46\trhpul\tYork\n52\trsvje\tLondon\n26\tlloqo\tReading\n55\tbnesg\tManchester\n44\tbivkk\tReading\n39\tfspwq\tManchester\n45\tuwcaa\tManchester\n18\tkeawg\tManchester\n48\tefacu\tLondon\n51\tisosp\tLeeds\n45\tbmgcc\tBath\n24\tgwage\tBath\n46\tqdfbs\tManchester\n24\tuxelj\tBath\n35\ttbpxp\tLondon\n53\tigmbh\tLeeds\n62\txexdr\tLondon\n53\tkguuh\tBath\n45\tkwtye\tManchester\n18\tvvseb\tYork\n68\toxcon\tNorwich\n31\thuame\tNorwich\n28\txnpyb\tManchester\n40\tmauat\tLondon\n41\tqyvaj\tLondon\n56\twjnch\tNorwich\n56\tinqbj\tLondon\n53\tgqdhm\tLeeds\n29\tjjnlo\tManchester\n49\tcdfva\tLeeds\n43\tkvwwu\tManchester\n31\tytkxa\tBath\n29\toxujx\tManchester\n47\tbulnw\tLondon\n33\trygsh\tYork\n27\twiuxu\tManchester\n22\tdhtol\tReading\n21\thugud\tLondon\n41\tetbto\tLondon\n22\tnuhos\tLondon\n44\tonhua\tNorwich\n41\tbvmfn\tReading\n33\tlhoah\tNorwich\n39\tookso\tLondon\n45\thpiym\tLondon\n27\txewrn\tLondon\n26\tisixq\tNorwich\n34\tmapjw\tManchester\n52\tclkue\tManchester\n24\thhvkx\tNorwich\n33\teuoek\tLondon\n35\tkpqiy\tNorwich\n19\togbsf\tLondon\n39\tkinvj\tLondon\n54\tnkmmv\tManchester\n34\tclpci\tReading\n42\tprbrc\tNorwich\n58\tmjphj\tManchester\n21\tbjixr\tLondon\n49\thidvv\tYork\n56\tbrnov\tLondon\n29\tdewgf\tBath\n37\tehodx\tLeeds\n19\tyldlo\tLondon\n57\tgvlfi\tManchester\n58\tctocu\tNorwich\n37\tmfrxt\tManchester\n26\tuxmoh\tLondon\n61\tyslui\tManchester\n30\tatbhv\tManchester\n61\tnkgkt\tReading\n37\tmpjgt\tLondon\n52\tumuod\tLondon\n55\tvjysc\tBath\n46\thcbot\tYork\n55\tqlojx\tReading\n37\tdaxrk\tLondon\n42\twfcql\tNorwich\n30\tqhfda\tBath\n46\tkoxot\tManchester\n41\txhnnv\tReading\n61\tgcqjv\tLondon\n53\ttwcta\tLondon\n37\teaerx\tLondon\n70\tfvsal\tYork\n62\tgkonu\tLondon\n62\tvnajp\tManchester\n20\tapwbi\tLeeds\n58\tvtrur\tManchester\n42\tgiwcs\tManchester\n46\tfrpkh\tLondon\n48\tcvaok\tLondon\n24\tnreuk\tNorwich\n24\ttwups\tLondon\n59\tamtqf\tLondon\n33\twkiat\tReading\n29\tppnwn\tReading\n40\tlimpw\tLondon\n20\tdxfkq\tLeeds\n31\tprryv\tReading\n40\tupwxv\tNorwich\n41\toucxi\tYork\n39\tyfkfq\tReading\n22\tsqbmg\tBath\n52\tdhpkf\tNorwich\n60\tbkgpk\tBath\n18\tpsbit\tLondon\n73\tjyjpb\tManchester\n46\tervav\tReading\n65\twcoei\tReading\n26\tlblnu\tManchester\n24\tdgcgc\tManchester\n52\tgugst\tManchester\n36\tvswxs\tLondon\n49\tpysiv\tLondon\n64\tjkxog\tLeeds\n32\tvsuii\tLondon\n55\tlvrbs\tNorwich\n39\tijrbs\tLondon\n39\tvsbnf\tBath\n43\tkflpt\tReading\n18\ttcbpi\tBath\n37\tobwqf\tLondon\n63\torons\tBath\n46\teqfxf\tBath\n67\ttkogx\tYork\n41\tvdhlo\tLeeds\n56\tsowgh\tLondon\n41\ttblqb\tLondon\n30\tbanlr\tReading\n56\tdjvmw\tBath\n62\tbplos\tManchester\n31\thdkiu\tLondon\n49\tyytle\tManchester\n22\txuhfn\tYork\n53\tykygq\tLeeds\n49\tinmlu\tReading\n36\tckgcx\tReading\n46\ttqlqd\tLeeds\n46\tmalnm\tLondon\n39\tttnpy\tLondon\n37\tbkmgp\tBath\n33\ttnsiq\tLondon\n37\tuoyce\tLondon\n26\tydopw\tReading\n32\tplaph\tYork\n49\txnhol\tNorwich\n46\thryti\tReading\n59\tjxeef\tLondon\n56\tabnuh\tReading\n50\tuolpt\tLondon\n45\tdqunf\tManchester\n43\tpkkfb\tManchester\n63\txfbbh\tLondon\n29\tvfdmw\tLondon\n47\tadfxv\tManchester\n39\tfuprl\tLondon\n30\ttdknq\tManchester\n63\tjjyoj\tLondon\n66\tvtilg\tNorwich\n50\tlcyer\tLondon\n39\tmnolk\tLondon\n68\tvjiuw\tLeeds\n54\trsvpj\tLondon\n70\tghcgu\tLondon\n30\ttpmwk\tReading\n42\tohtfs\tReading\n57\tvpipo\tLondon\n43\tfevjq\tManchester\n61\ttqwrh\tLondon\n28\thnsnb\tLondon\n39\tjdcip\tLondon\n39\tlkead\tManchester\n33\tkwiys\tBath\n39\tahlar\tLondon\n31\tmirnj\tReading\n56\tbyydn\tLondon\n60\tugqgw\tLondon\n38\tkuppg\tLondon\n71\txdqvx\tReading\n33\tikeik\tYork\n21\tajpin\tLondon\n64\tmpkrq\tLondon\n20\tiaqui\tManchester\n35\tcvwsr\tBath\n22\troowq\tManchester\n71\tiycpb\tLeeds\n49\tljnpj\tManchester\n48\tvsejs\tReading\n34\tvfpnk\tNorwich\n53\tgivte\tLeeds\n21\tcsope\tLondon\n20\tpykjq\tManchester\n18\ttorvc\tManchester\n36\tnuyvt\tLeeds\n56\tuhwgn\tLondon\n24\tevjdr\tBath\n33\twhtja\tLondon\n40\tgcnqi\tLondon\n38\tthmvx\tManchester\n52\txrffb\tLondon\n43\tfycwi\tManchester\n22\ticvjs\tLondon\n29\tgmgjq\tLondon\n63\tdssio\tManchester\n42\tgvtnc\tLondon\n43\tewkkd\tReading\n57\taryiv\tYork\n48\thsihh\tNorwich\n31\tvgaes\tReading\n58\teuhws\tManchester\n56\tgxrtg\tLondon\n39\tgyklr\tNorwich\n22\tnefvf\tBath\n32\tpmkfc\tReading\n28\tyuhyk\tBath\n75\twwmgd\tBath\n35\tghice\tManchester\n21\thppke\tManchester\n65\tajndq\tLondon\n26\tilqbp\tManchester\n44\tdwxnc\tReading\n32\tosfjw\tManchester\n43\tuvifx\tManchester\n47\twqpte\tLeeds\n41\tweyhe\tYork\n18\tlgaea\tLondon\n46\tlwyhm\tYork\n49\tiffyn\tLondon\n42\tnvfva\tManchester\n37\tvkemo\tNorwich\n19\tlpfsq\tNorwich\n27\trisnt\tLeeds\n60\tfagyx\tManchester\n57\tokxrm\tManchester\n52\tlhxey\tNorwich\n34\tuskmn\tLondon\n60\tefbgw\tYork\n56\tgctee\tBath\n31\tcarer\tBath\n30\trjotd\tYork\n30\tlayah\tYork\n27\tvkwuk\tNorwich\n38\trbein\tLondon\n40\tbbvji\tLeeds\n31\tqtfvs\tReading\n66\tpfaub\tLondon\n43\togcde\tYork\n50\tnmkuk\tLondon\n54\tlhgay\tYork\n36\tmuhpy\tBath\n49\tilhws\tManchester\n41\truxju\tBath\n37\taxvni\tLondon\n32\tryjge\tLondon\n50\txgaew\tYork\n47\tqyqsv\tBath\n64\tbjcml\tNorwich\n53\tlbugo\tLeeds\n47\tefcbb\tManchester\n74\thlrww\tManchester\n55\tlyjoo\tYork\n47\tvfxgo\tNorwich\n22\tfpayd\tNorwich\n36\tkfjjy\tLeeds\n50\tynphv\tReading\n42\txedjs\tManchester\n48\tnsvmi\tLondon\n36\tppmel\tBath\n70\tffwvg\tNorwich\n73\thfbkk\tNorwich\n37\tksfjc\tLeeds\n58\tersgc\tYork\n35\tylsku\tLondon\n32\tdlrev\tManchester\n39\tnrqof\tLondon\n42\tltnhe\tLondon\n63\tagmxo\tManchester\n35\trnsvw\tLondon\n25\tfrxhx\tManchester\n22\tlwkso\tManchester\n26\tkldvi\tYork\n43\tuukfg\tManchester\n28\ttntgg\tLondon\n53\tafmtb\tLeeds\n66\txhrbg\tManchester\n29\tesbbh\tManchester\n37\tgtrer\tLondon\n40\tpwems\tManchester\n49\thcsvv\tLondon\n43\trrunw\tYork\n46\tiywhv\tManchester\n18\trjmqk\tManchester\n32\thgbmh\tYork\n55\tnwvcf\tLeeds\n45\tspymd\tNorwich\n23\txlipn\tLondon\n51\tblnhl\tLondon\n44\tnckva\tLondon\n52\txicwa\tManchester\n22\tismki\tYork\n31\tseuko\tLeeds\n58\tbkqqb\tLeeds\n70\tlxxhv\tManchester\n22\txeftd\tLeeds\n42\tgdemc\tManchester\n48\tgmhdx\tManchester\n35\tfjarn\tLondon\n69\ttvrpm\tLondon\n69\tmuhml\tManchester\n27\tkqbtn\tLeeds\n44\tjhwqe\tReading\n26\tposaj\tYork\n47\tdvhai\tNorwich\n36\tddlfy\tLondon\n30\tpxouo\tBath\n32\txlyme\tLondon\n56\tjcxsw\tLondon\n36\tmxeyy\tLondon\n37\tmhann\tManchester\n63\txcfer\tNorwich\n43\tabvrj\tYork\n61\tmueou\tReading\n33\tsnqme\tLeeds\n43\tenfxf\tReading\n59\tknakg\tLondon\n21\tyysxq\tReading\n34\tictyy\tLeeds\n45\tmtmml\tLondon\n62\tymtdx\tManchester\n70\tasrla\tBath\n26\twmbmx\tNorwich\n19\tyapuj\tManchester\n32\tasqgi\tLondon\n32\tagaql\tYork\n38\tukssk\tLondon\n28\twajia\tLondon\n23\tougai\tManchester\n30\tpmvqr\tLondon\n61\ttqvpt\tLeeds\n45\twltos\tManchester\n55\tdjvlx\tManchester\n27\tlhrlf\tYork\n60\txofrs\tManchester\n57\tukkac\tNorwich\n47\tlvgsd\tBath\n18\thbdwd\tLondon\n46\tkwnux\tLondon\n33\tbwmbn\tLondon\n18\tfjawd\tManchester\n72\thyonk\tManchester\n40\tpdcnk\tYork\n37\tbwyml\tReading\n56\touvvy\tManchester\n64\tfvtwj\tManchester\n63\tvfskr\tManchester\n55\tplnan\tReading\n46\thhwdm\tLondon\n39\tlxcxh\tLondon\n23\tbtitv\tYork\n46\tqdyqs\tLondon\n49\tvlgqb\tManchester\n23\troept\tBath\n62\tubxgj\tReading\n25\ttxtcq\tLeeds\n19\thjgkr\tManchester\n38\tsbogx\tLondon\n53\tqjeiq\tLondon\n56\tegvfh\tLondon\n39\tybddg\tLondon\n31\tspapn\tManchester\n23\tqmwtg\tNorwich\n35\tbxfwu\tManchester\n21\twcxup\tManchester\n31\tiqbyf\tLondon\n55\txkinn\tBath\n46\tjapcj\tManchester\n35\tcbqgd\tManchester\n24\tpstdj\tNorwich\n21\tyxirh\tReading\n37\tuyjpa\tYork\n21\tfglvi\tManchester\n39\tvwnwg\tYork\n25\tmfnou\tYork\n25\tanfnk\tLondon\n59\tnsfke\tManchester\n66\thimhd\tLeeds\n56\tafisw\tBath\n19\tnsmdw\tLondon\n66\thxdgp\tManchester\n21\tokqsp\tManchester\n32\tvsvbs\tYork\n35\trjhhe\tManchester\n45\tpjuqa\tManchester\n63\txrigh\tLondon\n68\tikatk\tManchester\n33\tiwntf\tLeeds\n37\thalos\tManchester\n30\tahvkb\tYork\n51\tltvqn\tBath\n38\tauatt\tLondon\n51\thowln\tManchester\n57\tpeass\tYork\n48\trmxqu\tManchester\n51\tpqrbg\tLondon\n24\tkwplf\tLondon\n48\tmjjsj\tLondon\n22\tfeahk\tManchester\n63\teormb\tNorwich\n61\tqhjwc\tLeeds\n22\tbshyk\tLondon\n40\twulyn\tLondon\n34\txgfmw\tLondon\n41\tijspj\tYork\n45\tttdam\tBath\n40\tnmoic\tNorwich\n39\tidfwr\tLondon\n34\taxtwy\tLondon\n30\thukhy\tLondon\n34\tdvuow\tManchester\n41\tucedw\tLondon\n54\txpidd\tLondon\n53\twbhsb\tLondon\n54\tsgwyb\tLeeds\n36\tuxueu\tNorwich\n20\thorev\tManchester\n37\tmarhq\tManchester\n33\thwwtc\tYork\n37\thapiu\tReading\n54\tdrvxa\tLondon\n46\tqmfmi\tManchester\n32\tvgqrm\tYork\n45\tetsep\tReading\n60\tuueyo\tLondon\n42\tistfl\tLondon\n41\tocgty\tReading\n18\tkwdjn\tLondon\n30\txrrfo\tLeeds\n<!--TABLE_COMMENT-->\n<font color=red>Results are limited by 1000.</font>"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710309721_-303528082",
+      "id": "20170906-140621_1009735580",
+      "dateCreated": "2017-09-06T15:05:09+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:4079",
+      "user": "anonymous",
+      "dateFinished": "2017-09-07T09:32:57+0000",
+      "dateStarted": "2017-09-07T09:32:52+0000"
+    },
+    {
+      "text": "%sql\n\nselect age, count(age) from people group by age order by age\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-06T15:07:14+0000",
+      "config": {
+        "colWidth": 6,
+        "editorMode": "ace/mode/sql",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 298,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "age\tcount(age)\n18\t112\n19\t116\n20\t127\n21\t132\n22\t146\n23\t126\n24\t158\n25\t153\n26\t174\n27\t156\n28\t167\n29\t180\n30\t183\n31\t161\n32\t187\n33\t197\n34\t197\n35\t205\n36\t215\n37\t194\n38\t188\n39\t214\n40\t202\n41\t188\n42\t209\n43\t199\n44\t185\n45\t188\n46\t171\n47\t185\n48\t158\n49\t181\n50\t162\n51\t191\n52\t140\n53\t151\n54\t148\n55\t144\n56\t150\n57\t127\n58\t152\n59\t118\n60\t132\n61\t114\n62\t111\n63\t107\n64\t76\n65\t94\n66\t83\n67\t71\n68\t82\n69\t50\n70\t65\n71\t74\n72\t49\n73\t52\n74\t46\n75\t31\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710309725_-305067077",
+      "id": "20170906-140946_2013639726",
+      "dateCreated": "2017-09-06T15:05:09+0000",
+      "dateStarted": "2017-09-07T09:32:56+0000",
+      "dateFinished": "2017-09-07T09:33:02+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:4080"
+    },
+    {
+      "text": "%sql\n\nselect location, count(location) from people group by location\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-06T15:08:28+0000",
+      "config": {
+        "colWidth": 6,
+        "editorMode": "ace/mode/sql",
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "location\tcount(location)\nManchester\t2028\nNorwich\t732\nLondon\t2782\nReading\t695\nLeeds\t661\nBath\t699\nYork\t677\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710309726_-303912831",
+      "id": "20170906-145214_853697941",
+      "dateCreated": "2017-09-06T15:05:09+0000",
+      "dateStarted": "2017-09-07T09:32:57+0000",
+      "dateFinished": "2017-09-07T09:33:04+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:4081"
+    },
+    {
+      "text": "%sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2017-09-06T15:08:22+0000",
+      "config": {
+        "colWidth": 12,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1504710502357_945826573",
+      "id": "20170906-150822_1757337590",
+      "dateCreated": "2017-09-06T15:08:22+0000",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500,
+      "$$hashKey": "object:4082"
+    }
+  ],
+  "name": "Example",
+  "id": "2CT6M11X1",
+  "angularObjects": {
+    "2CSZGCTER:shared_process": [],
+    "2CUQ2VCYS:shared_process": [],
+    "2CSNWKSBE:shared_process": [],
+    "2CS5D3ZKF:shared_process": [],
+    "2CTKXJW1Q:shared_process": [],
+    "2CUB64S1W:shared_process": [],
+    "2CSWUH27K:shared_process": [],
+    "2CSW3PK9D:shared_process": [],
+    "2CRJ5T51D:shared_process": []
+  },
+  "config": {
+    "looknfeel": "default",
+    "personalizedMode": "false",
+    "cronExecutingUser": "anonymous",
+    "cron": "0 0 0/3 * * ?"
+  },
+  "info": {}
+}
