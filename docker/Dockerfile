@@ -51,19 +51,13 @@ RUN curl -sL http://archive.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-
  && git checkout -q $ZEPPELIN_COMMIT
 
 # Reskinning
-#ADD index.html /usr/src/zeppelin/index.html
 ADD navbar.html /usr/src/zeppelin/navbar.html
-#ADD navbar.css /usr/src/zeppelin/navbar.css
 ADD home.css /usr/src/zeppelin/home.css
-#ADD pom.xml /usr/src/zeppelin/pom.xml
 
-# this is buggy, seems to cause issues
-#RUN mv /usr/src/zeppelin/index.html /usr/src/zeppelin/zeppelin-web/src/index.html
-#RUN mv /usr/src/zeppelin/navbar.css /usr/src/zeppelin/zeppelin-web/src/components/navbar/navbar.css
 RUN mv /usr/src/zeppelin/navbar.html /usr/src/zeppelin/zeppelin-web/src/components/navbar/navbar.html
 RUN mv /usr/src/zeppelin/home.css /usr/src/zeppelin/zeppelin-web/src/app/home/home.css
 
-#RUN rm /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogo.png /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogoW.png
+# RUN rm /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogo.png /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogoW.png
 
 RUN cd /usr/src/zeppelin \
  && dev/change_scala_version.sh "2.11" \
