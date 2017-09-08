@@ -53,9 +53,17 @@ RUN curl -sL http://archive.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-
 # Reskinning
 ADD navbar.html /usr/src/zeppelin/navbar.html
 ADD home.css /usr/src/zeppelin/home.css
+# ADD your-logo.jpg /usr/src/zeppelin/logo.jgp
+# ADD your-logo.png /usr/src/zeppelin/logo.png
 
 RUN mv /usr/src/zeppelin/navbar.html /usr/src/zeppelin/zeppelin-web/src/components/navbar/navbar.html
 RUN mv /usr/src/zeppelin/home.css /usr/src/zeppelin/zeppelin-web/src/app/home/home.css
+
+RUN cp /usr/src/zeppelin/logo.jgp /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogo.png
+
+RUN cp /usr/src/zeppelin/logo.png /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogoW.png
+
+RUN cp /usr/src/zeppelin/logo.jgp /usr/src/zeppelin/zeppelin-web/src/favicon.ico
 
 # RUN rm /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogo.png /usr/src/zeppelin/zeppelin-web/src/assets/images/zepLogoW.png
 
